@@ -1,7 +1,7 @@
 # AgriLoop AI web build checklist
 
 Status of every item in [PRD §14](../PRD.md) and
-[web architecture §14](web-architecture.md §14-checklist-implementasi-untuk-ai-agent).
+[web architecture §14](../spec/web-architecture.md#14-checklist-implementasi-untuk-ai-agent).
 One commit per item, Conventional Commits, no co-author trailer.
 
 Legend: `[x]` done in this repository · `[ ]` not started.
