@@ -1,6 +1,8 @@
 # Panduan Web MVP — AgriLoop AI
 
-Dokumen ini menjadi brief implementasi untuk website demo. Gunakan Next.js, TypeScript, dan gaya flat design. Jangan mengubah produk menjadi klaim bahwa hasil estimasi satelit adalah stok aktual atau bahwa penilaian visual merupakan sertifikasi mutu.
+Dokumen ini menjadi brief implementasi untuk website AgriLoop AI. Gunakan Next.js, TypeScript, dan gaya flat design. Situs terdiri dari landing publik, `/demo` walkthrough yang terbuka, dan workspace terpisah untuk Petani, Buyer, Agregator, serta Admin. Jangan mengubah produk menjadi klaim bahwa hasil estimasi satelit adalah stok aktual atau bahwa penilaian visual merupakan sertifikasi mutu.
+
+Arsitektur rinci, pemilihan grid Earth Engine, alur state demo, dan checklist agent ada di [architecture.md](architecture.md). Kebutuhan pengguna dan checklist produk ada di [PRD](../PRD.md#12-skenario-pengguna-web-mvp).
 
 ## Tujuan demo
 
@@ -9,9 +11,9 @@ Pengunjung harus dapat memahami masalah residu pascapanen, melihat cara kerja Ag
 ## Teknologi
 
 - Next.js dengan App Router dan TypeScript.
-- CSS Modules atau Tailwind CSS; pilih satu saja agar gaya tetap ringan.
-- Motion graphics dengan Framer Motion (`motion`) atau Motion for React untuk transisi dan animasi kecil.
-- Peta sederhana dapat memakai komponen peta yang sudah dipilih tim; untuk demo tanpa tile server, tampilkan peta sampel statis dari grid satelit.
+- CSS Modules atau styling yang sudah tersedia pada proyek; jangan menambah dua sistem styling.
+- Motion for React (`motion`, import `motion/react`) untuk transisi kecil bila belum ada solusi gerak di proyek.
+- Untuk satu area dan beberapa grid tetap, pakai citra statis dengan SVG overlay; peta interaktif umum ditunda.
 - Dataset raster dipersiapkan sebelum runtime web dan disimpan sebagai aset demo/tiles ringan; jangan memanggil Earth Engine langsung dari browser atau membocorkan credential.
 
 ## Halaman dan struktur konten
@@ -28,7 +30,7 @@ Landing page satu halaman dengan section berikut:
 6. **Batasan/kepercayaan:** estimasi satelit bukan stok yang sudah diverifikasi; pemeriksaan kondisi awal bukan sertifikasi; ketersediaan dan transaksi perlu dikonfirmasi.
 7. **CTA akhir/footer:** ajakan untuk ikut pilot dan tautan dokumentasi/sumber data.
 
-### 2. Demo aplikasi
+### 2. Walkthrough publik `/demo`
 
 Satu alur yang bisa dicoba tanpa backend produksi:
 
@@ -40,6 +42,12 @@ Satu alur yang bisa dicoba tanpa backend produksi:
 - Form simulasi untuk mencatat hasil pickup/kuantitas aktual.
 
 Gunakan fixture lokal JSON bertanda dummy. Pisahkan fixture dari komponen visual agar kelak dapat diganti API.
+
+Walkthrough menyediakan persona switcher agar pengunjung dapat melihat alur dari sisi Petani, Buyer, Agregator, dan Admin. Pergantian persona hanya untuk demo; ia bukan login atau pengamanan route. Setiap persona memperbarui alur simulasi bersama dan tersedia tombol reset.
+
+### 3. Workspace per role
+
+Rute produk memisahkan kemampuan dan navigasi tiap pengguna: `/farmer/*`, `/buyer/*`, `/aggregator/*`, dan `/admin/*`. Petani mengelola pasokan/offer/pickup; Buyer mengelola kebutuhan, match, dan order; Agregator mengelola jadwal dan pengumpulan; Admin mengelola akun, grid demo, kualitas data dan audit. Detail route, status bisnis, autentikasi serta otorisasi dijelaskan dalam [arsitektur](architecture.md).
 
 ## Arah visual flat design
 
@@ -64,8 +72,13 @@ Gunakan gerakan untuk menjelaskan alur, bukan sebagai hiasan berulang:
 
 ```text
 app/
-  page.tsx                 # Landing page
-  demo/page.tsx            # Demo interaktif
+  (public)/page.tsx        # Landing page /
+  (public)/demo/page.tsx   # Walkthrough publik /demo
+  (auth)/login/page.tsx
+  (workspace)/farmer/...
+  (workspace)/buyer/...
+  (workspace)/aggregator/...
+  (workspace)/admin/...
   layout.tsx
 components/
   SiteHeader.tsx
@@ -108,6 +121,8 @@ Data sampel satelit harus mencantumkan sumber dataset, tanggal awal/akhir, area/
 
 - Landing page memuat seluruh section di atas, termasuk workflow yang jelas.
 - Pengunjung dapat membuka demo, mengganti tanggal komposit, melihat listing simulasi, dan menelusuri satu match sampai pickup tercatat.
+- Route workspace dan navigasi dipisahkan untuk empat role; server memeriksa sesi/role untuk halaman dan mutasi.
+- Setiap role dapat menyelesaikan tugas utamanya sesuai PRD tanpa memperoleh data milik role/organisasi lain.
 - Penanda dummy tampil di setiap permukaan demo yang menampilkan angka.
 - Tampilan mobile dan desktop dapat dibaca; animasi memiliki dukungan reduced-motion.
 - Sumber citra satelit dan keterbatasannya terlihat tanpa perlu membaca kode.
