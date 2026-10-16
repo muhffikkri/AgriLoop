@@ -38,10 +38,10 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Aggregator (PRD §14)
 
-- [ ] G1 See lots/orders that can be worked on.
-- [ ] G2 Create and change a pickup plan.
-- [ ] G3 Record status, actual quantity, unit, time and hand-over evidence.
-- [ ] G4 Cannot exceed the configured vehicle capacity.
+- [x] G1 See lots/orders that can be worked on.
+- [x] G2 Create and change a pickup plan.
+- [x] G3 Record status, actual quantity, unit, time and hand-over evidence.
+- [x] G4 Cannot exceed the configured vehicle capacity.
 
 ## Admin (PRD §14)
 
@@ -71,7 +71,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 - [x] S6 Farmer creates a draft, publishes, edits, answers an offer and sees pickups.
 - [x] S7 Buyer creates a requirement, sees matches with reasons, sends an offer and manages orders.
-- [ ] S8 Aggregator accepts an assignment, schedules a pickup and records actual quantity.
+- [x] S8 Aggregator accepts an assignment, schedules a pickup and records actual quantity.
 - [ ] S9 Buyer confirms receipt or opens a dispute.
 - [ ] S10 Admin reviews users, grids, transactions, data quality and audit within permissions.
 - [ ] S11 State machine rejects illegal status transitions.
