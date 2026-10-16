@@ -31,10 +31,10 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Buyer (PRD §14)
 
-- [ ] B1 Create, update and cancel a requirement.
-- [ ] B2 Browse marketplace filters and read match reasons.
-- [ ] B3 Send an offer, settle the order and confirm receipt.
-- [ ] B4 Open a dispute with a reason category.
+- [x] B1 Create, update and cancel a requirement.
+- [x] B2 Browse marketplace filters and read match reasons.
+- [x] B3 Send an offer, settle the order and confirm receipt.
+- [x] B4 Open a dispute with a reason category.
 
 ## Aggregator (PRD §14)
 
@@ -70,7 +70,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 ## Architecture checklist — business flow
 
 - [x] S6 Farmer creates a draft, publishes, edits, answers an offer and sees pickups.
-- [ ] S7 Buyer creates a requirement, sees matches with reasons, sends an offer and manages orders.
+- [x] S7 Buyer creates a requirement, sees matches with reasons, sends an offer and manages orders.
 - [ ] S8 Aggregator accepts an assignment, schedules a pickup and records actual quantity.
 - [ ] S9 Buyer confirms receipt or opens a dispute.
 - [ ] S10 Admin reviews users, grids, transactions, data quality and audit within permissions.

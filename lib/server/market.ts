@@ -82,7 +82,7 @@ export type RequirementInput = {
   notes?: string;
 };
 
-function validateRequirement(input: RequirementInput): Record<string, string> {
+export function validateRequirement(input: RequirementInput): Record<string, string> {
   const errors: Record<string, string> = {};
   if (!input.residueType.trim()) errors.residueType = "Choose the residue type";
   if (!input.areaLabel.trim()) errors.areaLabel = "Choose the search area";
@@ -148,6 +148,60 @@ export function createRequirement(actor: User, input: RequirementInput, publish:
   });
 
   return { ok: true, value: requirement };
+}
+
+export type RequirementResult =
+  | { ok: true; value: Requirement }
+  | { ok: false; error: string; fieldErrors?: Record<string, string> };
+
+/**
+ * Mirrors `updateLot`: the owning account may edit a requirement while it is still in
+ * play. A requirement that is fulfilled, closed or cancelled is a finished record and
+ * stays as it is.
+ */
+export function updateRequirement(actor: User, requirementId: string, input: RequirementInput): RequirementResult {
+  const requirement = requirementById(actor, requirementId);
+  if (!requirement) return { ok: false, error: "Requirement not found for this account" };
+  if (actor.id !== requirement.ownerId && requirement.orgName !== actor.orgName) {
+    return { ok: false, error: "This requirement belongs to another account" };
+  }
+  if (requirement.status === "FULFILLED" || requirement.status === "CLOSED" || requirement.status === "CANCELLED") {
+    return { ok: false, error: `A requirement with status ${requirement.status} can no longer be edited` };
+  }
+
+  const fieldErrors = validateRequirement(input);
+  if (Object.keys(fieldErrors).length) {
+    return { ok: false, error: Object.values(fieldErrors)[0], fieldErrors };
+  }
+
+  const updated = mutate((store) => {
+    const target = store.requirements.find((candidate) => candidate.id === requirementId)!;
+    target.residueType = input.residueType.trim();
+    target.quantityMin = Number(input.quantityMin);
+    target.quantityMax = Number(input.quantityMax);
+    target.unit = input.unit;
+    target.windowStart = input.windowStart;
+    target.windowEnd = input.windowEnd;
+    target.areaLabel = input.areaLabel.trim();
+    target.radiusKm = Number(input.radiusKm);
+    target.minCondition = input.minCondition as ConditionLabel;
+    target.substitution = input.substitution;
+    target.notes = input.notes?.trim() || undefined;
+    target.updatedAt = nowIso();
+    recordAudit(store, {
+      actorId: actor.id,
+      actorName: actor.name,
+      actorRole: actor.role,
+      entityType: "requirement",
+      entityId: target.id,
+      action: "requirement.updated",
+      to: target.status,
+      detail: `${target.quantityMin}-${target.quantityMax} ${target.unit} ${target.residueType} within ${target.radiusKm} km of ${target.areaLabel}`,
+    });
+    return target;
+  });
+
+  return { ok: true, value: updated };
 }
 
 export function setRequirementStatus(actor: User, requirementId: string, next: Requirement["status"], reason?: string): Result<Requirement> {
@@ -238,6 +292,9 @@ export function createOffer(actor: User, input: OfferInput): Result<Offer> {
   const store = readStore();
   const lot = store.lots.find((candidate) => candidate.id === input.lotId);
   if (!lot) return { ok: false, error: "Lot not found" };
+  if (lot.ownerId === actor.id || sameOrg(lot.ownerId, actor)) {
+    return { ok: false, error: "This lot already belongs to your own organisation" };
+  }
   if (lot.status !== "OPEN") return { ok: false, error: `Lot ${lot.id} is ${lot.status} and cannot take new offers` };
 
   const quantity = Number(input.quantity);

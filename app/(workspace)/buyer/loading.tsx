@@ -1,0 +1,9 @@
+import { LoadingRows } from "@/components/ui/states.tsx";
+
+export default function BuyerLoading() {
+  return (
+    <div className="stack">
+      <LoadingRows rows={4} label="Loading your workspace" />
+    </div>
+  );
+}
