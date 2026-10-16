@@ -9,9 +9,9 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 ## Public and walkthrough (PRD §14)
 
 - [x] P1 Landing page has hero, problem, five-step workflow, value per party, limits, CTA.
-- [ ] P2 `/demo` opens without login and has a Farmer/Buyer/Aggregator/Admin persona switcher.
-- [ ] P3 `/demo` shows simulated Punjab grids, period/layer picker, image source, metadata, dummy badge.
-- [ ] P4 Each persona completes one real step in the walkthrough; reset restores all state.
+- [x] P2 `/demo` opens without login and has a Farmer/Buyer/Aggregator/Admin persona switcher.
+- [x] P3 `/demo` shows simulated Punjab grids, period/layer picker, image source, metadata, dummy badge.
+- [x] P4 Each persona completes one real step in the walkthrough; reset restores all state.
 
 ## Account, router and role access (PRD §14)
 
@@ -65,7 +65,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 - [ ] S2 Auth strategy recorded (local signed-cookie session; Supabase swap path documented).
 - [ ] S3 Landing `/`, public `/demo`, auth pages, workspace `/app` and per-role dashboards exist.
 - [x] S4 Consistent layout/sidebar with a role-specific menu.
-- [ ] S5 `/demo` stays open without an account and never reads or writes transaction data.
+- [x] S5 `/demo` stays open without an account and never reads or writes transaction data.
 
 ## Architecture checklist — business flow
 
@@ -94,8 +94,8 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Architecture checklist — quality and experience
 
-- [ ] S22 `DATA DUMMY / SIMULASI` badge visible on every walkthrough data surface.
+- [x] S22 `DATA DUMMY / SIMULASI` badge visible on every walkthrough data surface.
 - [ ] S23 Loading, empty, error, forbidden and not-found states built.
 - [ ] S24 Flat, responsive, keyboard navigation, labels, contrast, reduced motion.
-- [ ] S25 Walkthrough reset that leaves workspace data untouched.
+- [x] S25 Walkthrough reset that leaves workspace data untouched.
 - [ ] S26 Lint/build and per-role route/permission tests run during implementation.
