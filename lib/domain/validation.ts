@@ -8,6 +8,7 @@ export type LotDraftInput = {
   readyDate: string;
   areaLabel: string;
   harvestDate?: string;
+  storage?: string;
   moisturePercent?: string;
   notes?: string;
 };

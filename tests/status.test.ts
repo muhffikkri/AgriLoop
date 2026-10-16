@@ -40,6 +40,10 @@ test("pickup requires CONFIRMED before IN_PROGRESS", () => {
   assert.equal(canTransition(PICKUP_TRANSITIONS, "CONFIRMED", "IN_PROGRESS"), true);
 });
 
+test("potential pickup lot can return to RESERVED when a pickup fails", () => {
+  assert.equal(canTransition(LOT_TRANSITIONS, "PICKUP_SCHEDULED", "RESERVED"), true);
+});
+
 test("transitionError explains illegal status change", () => {
   assert.equal(transitionError(LOT_TRANSITIONS, "DRAFT", "CLOSED"), "Status change DRAFT -> CLOSED is not allowed");
   assert.equal(transitionError(LOT_TRANSITIONS, "OPEN", "OPEN"), "OPEN is already the current status");

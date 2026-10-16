@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { signToken, verifyToken } from "../lib/domain/token.ts";
 
 const secret = "test-secret";
-const payload = { sub: "usr_1", role: "farmer" as const };
+const payload = { sub: "usr_1", role: "farmer" as const, name: "Test Farmer" };
 
 test("verifyToken returns the payload for a freshly signed token", () => {
   const token = signToken(payload, secret, 60_000);
