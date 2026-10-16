@@ -54,8 +54,8 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 - [ ] Q1 Flat design, mobile-first, readable labels/forms, keyboard usable.
 - [ ] Q2 Motion animations respect `prefers-reduced-motion`.
 - [ ] Q3 Loading, no-data, error, validation, forbidden, not-found and empty states are designed.
-- [ ] Q4 Imagery lists source, period, CRS/resolution, cloud mask and simulation status.
-- [ ] Q5 No Earth Engine credentials in the browser, repository or logs.
+- [x] Q4 Imagery lists source, period, CRS/resolution, cloud mask and simulation status.
+- [x] Q5 No Earth Engine credentials in the browser, repository or logs.
 - [ ] Q6 Mutations record actor, time and change; quantities are validated.
 - [x] Q7 Per-role authorization tests for pages, Server Actions and API before calling the app ready.
 
@@ -86,11 +86,11 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Architecture checklist — grids and Earth Engine
 
-- [ ] S17 At least four simulated Punjab grid polygons (GeoJSON) load.
-- [ ] S18 Grid selectable; month/layer choice updates raster and metadata.
-- [ ] S19 Date, source, bands, resolution, cloud mask, CRS and no-data status visible.
-- [ ] S20 No straw tonnage or grade derived from the imagery.
-- [ ] S21 No Earth Engine credentials in the client.
+- [x] S17 At least four simulated Punjab grid polygons (GeoJSON) load.
+- [x] S18 Grid selectable; month/layer choice updates raster and metadata.
+- [x] S19 Date, source, bands, resolution, cloud mask, CRS and no-data status visible.
+- [x] S20 No straw tonnage or grade derived from the imagery.
+- [x] S21 No Earth Engine credentials in the client.
 
 ## Architecture checklist — quality and experience
 
