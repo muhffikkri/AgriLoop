@@ -228,6 +228,55 @@ table.table { width: 100%; border-collapse: collapse; font-size: 0.9rem; backgro
 }
 .skip-link:focus { left: 0; }
 
+/* Assistive-only text */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Activity / audit list */
+.audit { list-style: none; padding: 0; margin: 0; }
+.audit-row {
+  display: flex; gap: 16px; justify-content: space-between; align-items: flex-start;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.audit-row:last-child { border-bottom: 0; }
+
+/* Two-column page body: content plus a side column of related facts */
+.split { display: grid; gap: var(--gap); grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 900px) { .split { grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); } }
+
+/* Small inline meta rows */
+.meta-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.meta-list li { display: flex; justify-content: space-between; gap: 12px; font-size: 0.9rem; }
+.meta-list .k { color: var(--ink-muted); }
+
+/* Segmented filter row built from links */
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg a {
+  min-height: 36px; display: inline-flex; align-items: center; padding: 0 12px;
+  border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface);
+  font-size: 0.875rem; color: var(--ink);
+}
+.seg a:hover { background: var(--surface-alt); text-decoration: none; }
+.seg a[aria-current="true"] { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+
+/* Inline definition row used on detail pages */.facts { display: grid; gap: 10px 20px; grid-template-columns: 1fr; margin: 0; }
+@media (min-width: 620px) { .facts { grid-template-columns: 1fr 1fr; } }
+.facts > div { border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.facts dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); }
+.facts dd { margin: 2px 0 0; font-size: 0.95rem; }
+
+/* Radio/checkbox choice row */
+.choice {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 8px 10px; border: 1px solid var(--line);
+  border-radius: var(--radius); background: var(--surface); cursor: pointer;
+}
+.choice:hover { background: var(--surface-alt); }
+.choice:has(input:checked) { border-color: var(--green); background: var(--green-tint); }
+.choice input { margin-top: 3px; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

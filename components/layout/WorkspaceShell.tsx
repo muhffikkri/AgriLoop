@@ -5,19 +5,12 @@ import { signOutAction } from "@/app/(auth)/actions.ts";
 import { ROLE_LABEL, ROLE_NAV } from "@/lib/role-nav.ts";
 import type { User } from "@/lib/server/db.ts";
 
-export function WorkspaceShell({
-  user,
-  title,
-  intro,
-  actions,
-  children,
-}: {
-  user: User;
-  title: string;
-  intro?: React.ReactNode;
-  actions?: React.ReactNode;
-  children: React.ReactNode;
-}) {
+/**
+ * Persistent chrome for every workspace: role navigation, the signed-in account and a
+ * standing reminder that the records are invented. Each role layout renders this once and
+ * the pages inside only supply their own header and body.
+ */
+export function WorkspaceFrame({ user, children }: { user: User; children: React.ReactNode }) {
   return (
     <div className="ws">
       <aside className="ws-side">
@@ -51,13 +44,6 @@ export function WorkspaceShell({
       </aside>
 
       <main id="main" className="ws-main">
-        <div className="ws-top">
-          <div>
-            <h1 style={{ fontSize: "1.7rem", marginBottom: intro ? 6 : 0 }}>{title}</h1>
-            {intro ? <p className="lede" style={{ margin: 0, fontSize: "1rem" }}>{intro}</p> : null}
-          </div>
-          {actions ? <div className="btn-row">{actions}</div> : null}
-        </div>
         {children}
         <p className="sim-banner" style={{ marginTop: 28 }}>
           <SimBadge />
@@ -67,6 +53,31 @@ export function WorkspaceShell({
           </span>
         </p>
       </main>
+    </div>
+  );
+}
+
+/** Page-level title block, so each workspace page states what it is for. */
+export function WorkspaceHeader({
+  title,
+  intro,
+  actions,
+}: {
+  title: string;
+  intro?: React.ReactNode;
+  actions?: React.ReactNode;
+}) {
+  return (
+    <div className="ws-top">
+      <div>
+        <h1 style={{ fontSize: "1.7rem", marginBottom: intro ? 6 : 0 }}>{title}</h1>
+        {intro ? (
+          <p className="lede" style={{ margin: 0, fontSize: "1rem" }}>
+            {intro}
+          </p>
+        ) : null}
+      </div>
+      {actions ? <div className="btn-row">{actions}</div> : null}
     </div>
   );
 }

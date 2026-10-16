@@ -1,7 +1,7 @@
 import { validateLotDraft, type LotDraftInput } from "@/lib/domain/validation.ts";
 import { transitionError, LOT_TRANSITIONS } from "@/lib/domain/status.ts";
 import type { ConditionLabel } from "@/lib/domain/matching.ts";
-import { mutate, nextId, nowIso, readStore, recordAudit, todayIso, type Lot, type Observation, type User } from "./db.ts";
+import { mutate, nextId, nowIso, readStore, recordAudit, todayIso, type AuditEvent, type Lot, type Observation, type User } from "./db.ts";
 import { sameOrg } from "./access.ts";
 
 export type LotResult = { ok: true; lot: Lot } | { ok: false; error: string; fieldErrors?: Record<string, string> };
@@ -300,4 +300,25 @@ export function farmerSummary(actor: User) {
 
 export function refreshLot(lot: Lot): Lot {
   return getLot(lot.id) ?? lot;
+}
+
+export type SelectableArea = { id: string; areaLabel: string; district: string };
+
+/** Only active demo cells can be chosen for a lot; the metadata stays admin-owned. */
+export function selectableAreas(): SelectableArea[] {
+  return readStore()
+    .grids.filter((grid) => grid.active)
+    .map((grid) => ({ id: grid.id, areaLabel: grid.areaLabel, district: grid.district }));
+}
+
+/**
+ * One farmer's own history: what they did, plus every recorded change to a lot they
+ * hold. Colleagues' private actions never enter the list.
+ */
+export function farmerHistory(actor: User, limit = 40): AuditEvent[] {
+  const owned = new Set(listLotsForFarmer(actor).map((lot) => lot.id));
+  return readStore()
+    .audit.filter((event) => event.actorId === actor.id || (event.entityType === "lot" && owned.has(event.entityId)))
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+    .slice(0, limit);
 }

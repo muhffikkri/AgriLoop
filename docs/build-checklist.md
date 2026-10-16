@@ -8,26 +8,26 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Public and walkthrough (PRD §14)
 
-- [ ] P1 Landing page has hero, problem, five-step workflow, value per party, limits, CTA.
+- [x] P1 Landing page has hero, problem, five-step workflow, value per party, limits, CTA.
 - [ ] P2 `/demo` opens without login and has a Farmer/Buyer/Aggregator/Admin persona switcher.
 - [ ] P3 `/demo` shows simulated Punjab grids, period/layer picker, image source, metadata, dummy badge.
 - [ ] P4 Each persona completes one real step in the walkthrough; reset restores all state.
 
 ## Account, router and role access (PRD §14)
 
-- [ ] A1 `/login`, `/signup` and `/app` work, with redirect per role.
+- [x] A1 `/login`, `/signup` and `/app` work, with redirect per role.
 - [ ] A2 Every role gets its own layout/sidebar and dashboard.
 - [ ] A3 A wrong role cannot open a page or take a forbidden action.
 - [ ] A4 Server Actions and Route Handlers verify session, role and ownership.
-- [ ] A5 Admin accounts cannot be created through public signup.
-- [ ] A6 Logout clears the session and returns to a public page.
+- [x] A5 Admin accounts cannot be created through public signup.
+- [x] A6 Logout clears the session and returns to a public page.
 
 ## Farmer (PRD §14)
 
-- [ ] F1 Create, save as draft, publish, update and withdraw a listing within its status.
-- [ ] F2 Review offers and accept/reject them with a reason.
-- [ ] F3 See the pickup schedule and declare readiness.
-- [ ] F4 See own history without another user's sensitive data.
+- [x] F1 Create, save as draft, publish, update and withdraw a listing within its status.
+- [x] F2 Review offers and accept/reject them with a reason.
+- [x] F3 See the pickup schedule and declare readiness.
+- [x] F4 See own history without another user's sensitive data.
 
 ## Buyer (PRD §14)
 
@@ -61,15 +61,15 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Architecture checklist — foundation and navigation
 
-- [ ] S1 Existing app/auth patterns inspected and reused where present.
+- [x] S1 Existing app/auth patterns inspected and reused where present.
 - [ ] S2 Auth strategy recorded (local signed-cookie session; Supabase swap path documented).
 - [ ] S3 Landing `/`, public `/demo`, auth pages, workspace `/app` and per-role dashboards exist.
-- [ ] S4 Consistent layout/sidebar with a role-specific menu.
+- [x] S4 Consistent layout/sidebar with a role-specific menu.
 - [ ] S5 `/demo` stays open without an account and never reads or writes transaction data.
 
 ## Architecture checklist — business flow
 
-- [ ] S6 Farmer creates a draft, publishes, edits, answers an offer and sees pickups.
+- [x] S6 Farmer creates a draft, publishes, edits, answers an offer and sees pickups.
 - [ ] S7 Buyer creates a requirement, sees matches with reasons, sends an offer and manages orders.
 - [ ] S8 Aggregator accepts an assignment, schedules a pickup and records actual quantity.
 - [ ] S9 Buyer confirms receipt or opens a dispute.

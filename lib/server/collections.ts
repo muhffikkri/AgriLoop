@@ -389,6 +389,24 @@ export function recordPickup(
   return { ok: true, value: record };
 }
 
+export type FarmerStop = { plan: PickupPlan; order: Order; lot: Lot; record: PickupRecord };
+
+/** Pickup stops a farmer has to prepare for, across every plan that includes their orders. */
+export function stopsForFarmer(actor: User): FarmerStop[] {
+  const store = readStore();
+  const myOrderIds = new Set(
+    store.orders.filter((order) => order.farmerId === actor.id || sameOrg(order.farmerId, actor)).map((order) => order.id),
+  );
+  return store.pickups
+    .filter((plan) => plan.orderIds.some((id) => myOrderIds.has(id)))
+    .sort((a, b) => a.plannedAt.localeCompare(b.plannedAt))
+    .flatMap((plan) =>
+      planRows(plan)
+        .filter((row) => myOrderIds.has(row.order.id))
+        .map((row) => ({ plan, ...row })),
+    );
+}
+
 export function aggregatorSummary(actor: User) {
   const plans = myPlans(actor);
   const store = readStore();

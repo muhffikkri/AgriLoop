@@ -27,3 +27,29 @@ export function ErrorState({ title, detail }: { title: string; detail?: React.Re
     </div>
   );
 }
+
+export function StatGrid({
+  items,
+}: {
+  items: Array<{ label: string; value: React.ReactNode; hint?: string }>;
+}) {
+  return (
+    <div className="grid-4">
+      {items.map((item) => (
+        <div className="card" key={item.label}>
+          <p className="small muted" style={{ margin: "0 0 4px" }}>
+            {item.label}
+          </p>
+          <p className="mono" style={{ margin: 0, fontSize: "1.9rem", fontWeight: 600, lineHeight: 1.1 }}>
+            {item.value}
+          </p>
+          {item.hint ? (
+            <p className="small muted" style={{ margin: "6px 0 0" }}>
+              {item.hint}
+            </p>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  );
+}
