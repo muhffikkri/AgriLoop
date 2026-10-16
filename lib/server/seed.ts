@@ -110,7 +110,7 @@ export function createSeed(): Store {
       readyDate: "2026-04-08",
       areaId: "PB-G04",
       areaLabel: "Patiala West",
-      status: "OPEN",
+      status: "RESERVED",
       conditionLabel: "needs_inspection",
       conditionSource: "farmer",
       conditionNote: "No photos yet, quantity is an estimate from the baler count.",
@@ -214,6 +214,21 @@ export function createSeed(): Store {
       createdAt: "2026-04-01T12:00:00.000Z",
       updatedAt: "2026-04-02T05:00:00.000Z",
     },
+    {
+      id: "OFF-0002",
+      lotId: "LOT-0004",
+      requirementId: "REQ-0002",
+      buyerId: "USR-0006",
+      buyerOrg: "Punjab Compost Collective",
+      quantity: 22,
+      unit: "ton",
+      terms: "Buyer arranges the collector, pays on the weighbridge slip.",
+      expiresAt: "2026-04-12",
+      status: "ACCEPTED",
+      responseNote: "Accepted, collector has not been assigned yet.",
+      createdAt: "2026-04-02T09:20:00.000Z",
+      updatedAt: "2026-04-03T04:10:00.000Z",
+    },
   ];
 
   const orders: Store["orders"] = [
@@ -230,6 +245,20 @@ export function createSeed(): Store {
       status: "ACTIVE",
       createdAt: "2026-04-02T05:00:00.000Z",
       updatedAt: "2026-04-02T05:00:00.000Z",
+    },
+    {
+      id: "ORD-0002",
+      lotId: "LOT-0004",
+      offerId: "OFF-0002",
+      buyerId: "USR-0006",
+      buyerOrg: "Punjab Compost Collective",
+      farmerId: "USR-0005",
+      farmerOrg: "Singh Growers Group",
+      agreedQuantity: 22,
+      unit: "ton",
+      status: "ACTIVE",
+      createdAt: "2026-04-03T04:10:00.000Z",
+      updatedAt: "2026-04-03T04:10:00.000Z",
     },
   ];
 
@@ -248,6 +277,20 @@ export function createSeed(): Store {
       note: "Single stop, farm gate access confirmed by the farmer.",
       createdAt: "2026-04-02T06:30:00.000Z",
       updatedAt: "2026-04-02T06:30:00.000Z",
+    },
+  ];
+
+  const records: Store["records"] = [
+    {
+      id: "REC-0001",
+      planId: "PICK-0001",
+      orderId: "ORD-0001",
+      lotId: "LOT-0003",
+      actualQuantity: 0,
+      unit: "ton",
+      collectedAt: "",
+      readyConfirmed: false,
+      createdAt: "2026-04-02T06:30:00.000Z",
     },
   ];
 
@@ -302,6 +345,19 @@ export function createSeed(): Store {
       detail: "Tractor trolley 2, capacity 18 ton, one stop",
       createdAt: "2026-04-02T06:30:00.000Z",
     },
+    {
+      id: "AUD-0005",
+      actorId: "USR-0005",
+      actorName: "Gurpreet Singh",
+      actorRole: "farmer",
+      entityType: "offer",
+      entityId: "OFF-0002",
+      action: "offer.accepted",
+      from: "PENDING",
+      to: "ACCEPTED",
+      detail: "Accepted, buyer arranges the collector",
+      createdAt: "2026-04-03T04:10:00.000Z",
+    },
   ];
 
   return {
@@ -313,7 +369,7 @@ export function createSeed(): Store {
     offers,
     orders,
     pickups,
-    records: [],
+    records,
     grids: demoGrids(),
     audit,
   };

@@ -234,8 +234,11 @@ export function setPlanStatus(
     return { ok: false, error: `A ${next.toLowerCase()} plan needs a reason` };
   }
   if (next === "COMPLETED") {
-    const rows = planRows(plan);
-    const missing = rows.filter((row) => !row.record.collectedAt);
+    const store = readStore();
+    const missing = plan.orderIds.filter((orderId) => {
+      const record = store.records.find((candidate) => candidate.planId === plan.id && candidate.orderId === orderId);
+      return !record || !record.collectedAt;
+    });
     if (missing.length) {
       return { ok: false, error: `Record the actual quantity for ${missing.length} stop(s) before completing the plan` };
     }
@@ -294,6 +297,8 @@ export function confirmReadiness(actor: User, planId: string, orderId: string): 
   if (order.farmerId !== actor.id && !sameOrg(order.farmerId, actor)) {
     return { ok: false, error: "Only the farmer holding the lot can confirm readiness" };
   }
+  const existing = readStore().records.find((candidate) => candidate.planId === planId && candidate.orderId === orderId);
+  if (!existing) return { ok: false, error: "This stop has no pickup record yet" };
 
   const record = mutate((store) => {
     const target = store.records.find((candidate) => candidate.planId === planId && candidate.orderId === orderId)!;
@@ -347,6 +352,9 @@ export function recordPickup(
 
   const problem = transitionError(LOT_TRANSITIONS, lot.status, "PICKED_UP");
   if (problem && lot.status !== "PICKED_UP") return { ok: false, error: `Lot ${lot.id}: ${problem}` };
+
+  const existing = store.records.find((candidate) => candidate.planId === planId && candidate.orderId === orderId);
+  if (!existing) return { ok: false, error: "This stop has no pickup record yet" };
 
   const record = mutate((store) => {
     const target = store.records.find((candidate) => candidate.planId === planId && candidate.orderId === orderId)!;
