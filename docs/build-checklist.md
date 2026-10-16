@@ -16,7 +16,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 ## Account, router and role access (PRD §14)
 
 - [x] A1 `/login`, `/signup` and `/app` work, with redirect per role.
-- [ ] A2 Every role gets its own layout/sidebar and dashboard.
+- [x] A2 Every role gets its own layout/sidebar and dashboard.
 - [x] A3 A wrong role cannot open a page or take a forbidden action.
 - [x] A4 Server Actions and Route Handlers verify session, role and ownership.
 - [x] A5 Admin accounts cannot be created through public signup.
@@ -63,7 +63,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 - [x] S1 Existing app/auth patterns inspected and reused where present.
 - [ ] S2 Auth strategy recorded (local signed-cookie session; Supabase swap path documented).
-- [ ] S3 Landing `/`, public `/demo`, auth pages, workspace `/app` and per-role dashboards exist.
+- [x] S3 Landing `/`, public `/demo`, auth pages, workspace `/app` and per-role dashboards exist.
 - [x] S4 Consistent layout/sidebar with a role-specific menu.
 - [x] S5 `/demo` stays open without an account and never reads or writes transaction data.
 
@@ -72,7 +72,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 - [x] S6 Farmer creates a draft, publishes, edits, answers an offer and sees pickups.
 - [x] S7 Buyer creates a requirement, sees matches with reasons, sends an offer and manages orders.
 - [x] S8 Aggregator accepts an assignment, schedules a pickup and records actual quantity.
-- [ ] S9 Buyer confirms receipt or opens a dispute.
+- [x] S9 Buyer confirms receipt or opens a dispute.
 - [x] S10 Admin reviews users, grids, transactions, data quality and audit within permissions.
 - [x] S11 State machine rejects illegal status transitions.
 
