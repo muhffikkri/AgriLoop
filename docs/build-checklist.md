@@ -51,12 +51,12 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Quality, accessibility and security (PRD §14)
 
-- [ ] Q1 Flat design, mobile-first, readable labels/forms, keyboard usable.
-- [ ] Q2 Motion animations respect `prefers-reduced-motion`.
-- [ ] Q3 Loading, no-data, error, validation, forbidden, not-found and empty states are designed.
+- [x] Q1 Flat design, mobile-first, readable labels/forms, keyboard usable.
+- [x] Q2 Motion animations respect `prefers-reduced-motion`.
+- [x] Q3 Loading, no-data, error, validation, forbidden, not-found and empty states are designed.
 - [x] Q4 Imagery lists source, period, CRS/resolution, cloud mask and simulation status.
 - [x] Q5 No Earth Engine credentials in the browser, repository or logs.
-- [ ] Q6 Mutations record actor, time and change; quantities are validated.
+- [x] Q6 Mutations record actor, time and change; quantities are validated.
 - [x] Q7 Per-role authorization tests for pages, Server Actions and API before calling the app ready.
 
 ## Architecture checklist — foundation and navigation
@@ -95,7 +95,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 ## Architecture checklist — quality and experience
 
 - [x] S22 `DATA DUMMY / SIMULASI` badge visible on every walkthrough data surface.
-- [ ] S23 Loading, empty, error, forbidden and not-found states built.
-- [ ] S24 Flat, responsive, keyboard navigation, labels, contrast, reduced motion.
+- [x] S23 Loading, empty, error, forbidden and not-found states built.
+- [x] S24 Flat, responsive, keyboard navigation, labels, contrast, reduced motion.
 - [x] S25 Walkthrough reset that leaves workspace data untouched.
-- [ ] S26 Lint/build and per-role route/permission tests run during implementation.
+- [x] S26 Lint/build and per-role route/permission tests run during implementation.
