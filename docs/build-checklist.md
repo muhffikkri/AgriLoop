@@ -45,9 +45,9 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 ## Admin (PRD §14)
 
-- [ ] D1 Manage users/roles with an audit log.
-- [ ] D2 Manage simulated grids and image metadata without altering source rasters.
-- [ ] D3 See transactions/disputes and data status without needless access to private information.
+- [x] D1 Manage users/roles with an audit log.
+- [x] D2 Manage simulated grids and image metadata without altering source rasters.
+- [x] D3 See transactions/disputes and data status without needless access to private information.
 
 ## Quality, accessibility and security (PRD §14)
 
@@ -73,7 +73,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 - [x] S7 Buyer creates a requirement, sees matches with reasons, sends an offer and manages orders.
 - [x] S8 Aggregator accepts an assignment, schedules a pickup and records actual quantity.
 - [ ] S9 Buyer confirms receipt or opens a dispute.
-- [ ] S10 Admin reviews users, grids, transactions, data quality and audit within permissions.
+- [x] S10 Admin reviews users, grids, transactions, data quality and audit within permissions.
 - [ ] S11 State machine rejects illegal status transitions.
 
 ## Architecture checklist — authorization
