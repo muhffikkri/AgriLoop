@@ -62,7 +62,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 ## Architecture checklist — foundation and navigation
 
 - [x] S1 Existing app/auth patterns inspected and reused where present.
-- [ ] S2 Auth strategy recorded (local signed-cookie session; Supabase swap path documented).
+- [x] S2 Auth strategy recorded (local signed-cookie session; Supabase swap path documented).
 - [x] S3 Landing `/`, public `/demo`, auth pages, workspace `/app` and per-role dashboards exist.
 - [x] S4 Consistent layout/sidebar with a role-specific menu.
 - [x] S5 `/demo` stays open without an account and never reads or writes transaction data.
