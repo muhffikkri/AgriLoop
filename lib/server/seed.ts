@@ -1,5 +1,7 @@
 import { hashPassword } from "@/lib/domain/password.ts";
-import type { Store, User } from "./db.ts";
+import { ringToBounds, type LonLat } from "@/lib/domain/grid-extent.ts";
+import gridsGeoJson from "../../data/demo/grids.json";
+import type { GridSample, Store, User } from "./db.ts";
 
 const DEMO_PASSWORD = "demo1234";
 
@@ -312,13 +314,20 @@ export function createSeed(): Store {
     orders,
     pickups,
     records: [],
-    grids: [
-      { id: "PB-G01", areaLabel: "Ludhiana North", district: "Ludhiana", bounds: { east: 75.92, north: 30.96, west: 75.84, south: 30.88 }, isSimulated: true, active: true, note: "Demo extent, not a field boundary." },
-      { id: "PB-G02", areaLabel: "Ludhiana South", district: "Ludhiana", bounds: { east: 75.9, north: 30.86, west: 75.82, south: 30.78 }, isSimulated: true, active: true, note: "Demo extent, not a field boundary." },
-      { id: "PB-G03", areaLabel: "Moga East", district: "Moga", bounds: { east: 75.24, north: 30.86, west: 75.16, south: 30.78 }, isSimulated: true, active: true, note: "Demo extent, not a field boundary." },
-      { id: "PB-G04", areaLabel: "Patiala West", district: "Patiala", bounds: { east: 76.44, north: 30.38, west: 76.36, south: 30.3 }, isSimulated: true, active: true, note: "Demo extent, not a field boundary." },
-      { id: "PB-G05", areaLabel: "Bathinda Central", district: "Bathinda", bounds: { east: 74.99, north: 30.24, west: 74.91, south: 30.16 }, isSimulated: true, active: true, note: "Demo extent, not a field boundary." },
-    ],
+    grids: demoGrids(),
     audit,
   };
+}
+
+/** The committed GeoJSON is the single source of truth for the demo selection cells. */
+export function demoGrids(): GridSample[] {
+  return gridsGeoJson.features.map((feature) => ({
+    id: feature.properties.id,
+    areaLabel: feature.properties.areaLabel,
+    district: feature.properties.district,
+    bounds: ringToBounds(feature.geometry.coordinates[0] as unknown as LonLat[]),
+    isSimulated: true,
+    active: true,
+    note: feature.properties.note,
+  }));
 }

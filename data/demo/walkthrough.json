@@ -1,0 +1,109 @@
+{
+  "isDemo": true,
+  "note": "Walkthrough fixtures. Every lot, buyer and pickup below is invented for the public demo and is stored in the browser only. It never touches the workspace store.",
+  "storageKey": "agriloop-demo-v1",
+  "lots": [
+    {
+      "id": "LOT-SIM-101",
+      "residueType": "wheat straw",
+      "crop": "wheat",
+      "quantity": 14,
+      "unit": "ton",
+      "areaId": "PB-G01",
+      "areaLabel": "Ludhiana North",
+      "readyDate": "2026-04-06",
+      "harvestDate": "2026-03-30",
+      "storage": "covered",
+      "conditionLabel": "buyer_review",
+      "conditionNote": "Sample images show dry bales under a tarpaulin. No moisture reading was taken, so this stays a visual note.",
+      "status": "OPEN"
+    },
+    {
+      "id": "LOT-SIM-102",
+      "residueType": "wheat straw",
+      "crop": "wheat",
+      "quantity": 9,
+      "unit": "ton",
+      "areaId": "PB-G02",
+      "areaLabel": "Ludhiana South",
+      "readyDate": "2026-04-09",
+      "harvestDate": "2026-04-01",
+      "storage": "open",
+      "conditionLabel": "needs_inspection",
+      "conditionNote": "Four days in the open, the outer layer looked damp in two of three photos. An inspector should confirm before an offer is agreed.",
+      "status": "OPEN"
+    },
+    {
+      "id": "LOT-SIM-103",
+      "residueType": "rice straw",
+      "crop": "rice",
+      "quantity": 21,
+      "unit": "ton",
+      "areaId": "PB-G04",
+      "areaLabel": "Patiala West",
+      "readyDate": "2026-04-12",
+      "harvestDate": "2026-04-03",
+      "storage": "open",
+      "conditionLabel": "needs_inspection",
+      "conditionNote": "Quantity is a baler count estimate, not a weighbridge figure.",
+      "status": "OPEN"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-SIM-201",
+      "orgName": "GreenFeed Mills (simulated)",
+      "residueType": "wheat straw",
+      "quantityMin": 10,
+      "quantityMax": 30,
+      "unit": "ton",
+      "windowStart": "2026-04-01",
+      "windowEnd": "2026-04-20",
+      "areaLabel": "Ludhiana North",
+      "radiusKm": 50,
+      "minCondition": "buyer_review",
+      "note": "Runs a feed line that takes wheat straw; checks moisture on arrival."
+    },
+    {
+      "id": "REQ-SIM-202",
+      "orgName": "Punjab Compost Collective (simulated)",
+      "residueType": "rice straw",
+      "quantityMin": 5,
+      "quantityMax": 40,
+      "unit": "ton",
+      "windowStart": "2026-04-05",
+      "windowEnd": "2026-04-30",
+      "areaLabel": "Patiala West",
+      "radiusKm": 80,
+      "minCondition": "needs_inspection",
+      "note": "Composting site, accepts mixed bales and inspects at the gate."
+    }
+  ],
+  "steps": [
+    {
+      "persona": "farmer",
+      "title": "Publish a residue lot",
+      "body": "Pick a simulated cell, set the quantity and storage, then publish the lot so buyers can see it."
+    },
+    {
+      "persona": "buyer",
+      "title": "Match a requirement and send an offer",
+      "body": "Filter the open lots against a buyer requirement, read why each lot fits or does not, then send a simulated offer."
+    },
+    {
+      "persona": "aggregator",
+      "title": "Plan the pickup",
+      "body": "Turn the agreed order into a pickup plan and respect the vehicle capacity."
+    },
+    {
+      "persona": "aggregator",
+      "title": "Record what actually moved",
+      "body": "Enter the weighed quantity and the hand-over reference. The gap against the listing is the point of this step."
+    },
+    {
+      "persona": "admin",
+      "title": "Review status and data quality",
+      "body": "See the same flow from the programme side: which steps are done, what is missing, and what still needs a human decision."
+    }
+  ]
+}

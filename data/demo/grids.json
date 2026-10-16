@@ -1,0 +1,32 @@
+{
+  "type": "FeatureCollection",
+  "note": "Simulated selection cells for the Punjab demo extent. They are administrative-looking rectangles drawn for the walkthrough only: not field boundaries, not linked to any farmer, and carrying no statement about residue volume.",
+  "crs": "EPSG:4326",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "PB-G01", "areaLabel": "Ludhiana North", "district": "Ludhiana", "isSimulated": true, "note": "Demo extent, not a field boundary." },
+      "geometry": { "type": "Polygon", "coordinates": [[[75.84, 30.96], [75.92, 30.96], [75.92, 30.88], [75.84, 30.88], [75.84, 30.96]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "PB-G02", "areaLabel": "Ludhiana South", "district": "Ludhiana", "isSimulated": true, "note": "Demo extent, not a field boundary." },
+      "geometry": { "type": "Polygon", "coordinates": [[[75.82, 30.86], [75.9, 30.86], [75.9, 30.78], [75.82, 30.78], [75.82, 30.86]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "PB-G03", "areaLabel": "Moga East", "district": "Moga", "isSimulated": true, "note": "Demo extent, not a field boundary." },
+      "geometry": { "type": "Polygon", "coordinates": [[[75.16, 30.86], [75.24, 30.86], [75.24, 30.78], [75.16, 30.78], [75.16, 30.86]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "PB-G04", "areaLabel": "Patiala West", "district": "Patiala", "isSimulated": true, "note": "Demo extent, not a field boundary." },
+      "geometry": { "type": "Polygon", "coordinates": [[[76.36, 30.38], [76.44, 30.38], [76.44, 30.3], [76.36, 30.3], [76.36, 30.38]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "PB-G05", "areaLabel": "Bathinda Central", "district": "Bathinda", "isSimulated": true, "note": "Demo extent, not a field boundary." },
+      "geometry": { "type": "Polygon", "coordinates": [[[74.91, 30.24], [74.99, 30.24], [74.99, 30.16], [74.91, 30.16], [74.91, 30.24]]] }
+    }
+  ]
+}
