@@ -17,8 +17,8 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 
 - [x] A1 `/login`, `/signup` and `/app` work, with redirect per role.
 - [ ] A2 Every role gets its own layout/sidebar and dashboard.
-- [ ] A3 A wrong role cannot open a page or take a forbidden action.
-- [ ] A4 Server Actions and Route Handlers verify session, role and ownership.
+- [x] A3 A wrong role cannot open a page or take a forbidden action.
+- [x] A4 Server Actions and Route Handlers verify session, role and ownership.
 - [x] A5 Admin accounts cannot be created through public signup.
 - [x] A6 Logout clears the session and returns to a public page.
 
@@ -57,7 +57,7 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 - [ ] Q4 Imagery lists source, period, CRS/resolution, cloud mask and simulation status.
 - [ ] Q5 No Earth Engine credentials in the browser, repository or logs.
 - [ ] Q6 Mutations record actor, time and change; quantities are validated.
-- [ ] Q7 Per-role authorization tests for pages, Server Actions and API before calling the app ready.
+- [x] Q7 Per-role authorization tests for pages, Server Actions and API before calling the app ready.
 
 ## Architecture checklist — foundation and navigation
 
@@ -74,15 +74,15 @@ Legend: `[x]` done in this repository · `[ ]` not started.
 - [x] S8 Aggregator accepts an assignment, schedules a pickup and records actual quantity.
 - [ ] S9 Buyer confirms receipt or opens a dispute.
 - [x] S10 Admin reviews users, grids, transactions, data quality and audit within permissions.
-- [ ] S11 State machine rejects illegal status transitions.
+- [x] S11 State machine rejects illegal status transitions.
 
 ## Architecture checklist — authorization
 
-- [ ] S12 Every workspace page checks session and role on the server.
-- [ ] S13 Every Server Action/API checks session, role, ownership/organization, input and source status.
-- [ ] S14 Anonymous users go to login; other roles get a denied page.
-- [ ] S15 Admin cannot be created through public signup.
-- [ ] S16 Cross-role and cross-organization access tests.
+- [x] S12 Every workspace page checks session and role on the server.
+- [x] S13 Every Server Action/API checks session, role, ownership/organization, input and source status.
+- [x] S14 Anonymous users go to login; other roles get a denied page.
+- [x] S15 Admin cannot be created through public signup.
+- [x] S16 Cross-role and cross-organization access tests.
 
 ## Architecture checklist — grids and Earth Engine
 
